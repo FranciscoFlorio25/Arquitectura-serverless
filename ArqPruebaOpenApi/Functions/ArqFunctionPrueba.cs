@@ -10,16 +10,22 @@ using Newtonsoft.Json;
 
 namespace ArqPruebaOpenApi.Functions
 {
-    public static class ArqFunctionPrueba
+    public class ArqFunctionPrueba
     {
-        [FunctionName("ArqFunctionPrueba")]
-        public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
-            ILogger log)
-        {
-            log.LogInformation("Testing... Testing.");
+        private readonly ILogger _log;
 
-            string name = req.Query["name"];
+        public ArqFunctionPrueba(ILogger log)
+        {
+            _log = log;
+        }
+
+        [FunctionName("ArqFunctionPrueba")]
+        public async Task<IActionResult> Run(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req)
+        {
+            _log.LogInformation("Testing... Testing.");
+
+            //string name = req.Query["name"];
 
             // string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             // dynamic data = JsonConvert.DeserializeObject(requestBody);
