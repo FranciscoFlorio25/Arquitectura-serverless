@@ -17,18 +17,19 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-[assembly: WebJobsStartup(typeof(FunctionStartUp))]
+[assembly: FunctionsStartup(typeof(FunctionStartUp))]
 
 namespace ArqPruebaOpenApi
 {
     public class FunctionStartUp : FunctionsStartup
     {
-
         public override void Configure(IFunctionsHostBuilder builder)
         {
 
-            builder.Services.AddInfraestructure(builder.GetContext().Configuration);
-            builder.Services.AddApplication();
+            builder.Services.Configure<IConfiguration>((configuration) =>{
+                builder.Services.AddInfraestructure(configuration);
+                builder.Services.AddApplication();
+            });
 
             builder.AddSwashBuckle(Assembly.GetExecutingAssembly(), opts => {
                 opts.AddCodeParameter = true;

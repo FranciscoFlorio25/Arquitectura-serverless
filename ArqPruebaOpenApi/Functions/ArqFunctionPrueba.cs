@@ -7,31 +7,45 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using MediatR;
+using Application.UseCases.Products.GetProduct;
+using ArqPruebaOpenApi.Extension;
+using Domain.Entities;
+using Azure.Core;
+using Application.UseCases.Products.AddProduct;
 
 namespace ArqPruebaOpenApi.Functions
 {
     public class ArqFunctionPrueba
     {
         private readonly ILogger _log;
+        private readonly IMediator _mediator;
 
-        public ArqFunctionPrueba(ILogger log)
+        public ArqFunctionPrueba(ILogger log, IMediator mediator)
         {
             _log = log;
+            _mediator = mediator;
         }
 
         [FunctionName("ArqFunctionPrueba")]
-        public async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req)
+        public async Task<IActionResult> GetProducts(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "product/get")] HttpRequest req)
         {
             _log.LogInformation("Testing... Testing.");
 
-            //string name = req.Query["name"];
+            var responseMessage = await _mediator.Send(new GetProductRequest()).ToHttpResult();
 
-            // string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            // dynamic data = JsonConvert.DeserializeObject(requestBody);
-            // name = name ?? data?.name; 
+            return new OkObjectResult(responseMessage);
+        }
 
-            string responseMessage = "look i worked!";
+        [FunctionName("ArqFunctionPrueba")]
+        public async Task<IActionResult> PostProduct(
+        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "product/post")] AddProductRequest req)
+        {
+            _log.LogInformation("Testing... Testing.");
+
+
+            var responseMessage = await _mediator.Send(req).ToHttpResult();
 
             return new OkObjectResult(responseMessage);
         }
