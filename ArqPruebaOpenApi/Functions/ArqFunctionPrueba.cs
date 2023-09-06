@@ -27,7 +27,7 @@ namespace ArqPruebaOpenApi.Functions
             _mediator = mediator;
         }
 
-        [FunctionName("ArqFunctionPrueba")]
+        [FunctionName("ArqFunctionPruebaGet")]
         public async Task<IActionResult> GetProducts(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "product/get")] HttpRequest req)
         {
@@ -38,7 +38,7 @@ namespace ArqPruebaOpenApi.Functions
             return new OkObjectResult(responseMessage);
         }
 
-        [FunctionName("ArqFunctionPrueba")]
+        [FunctionName("ArqFunctionPruebaPost")]
         public async Task<IActionResult> PostProduct(
         [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "product/post")] AddProductRequest req)
         {

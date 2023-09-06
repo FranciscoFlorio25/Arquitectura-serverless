@@ -10,6 +10,6 @@
 
   },
   "ConnectionStrings": {
-    "DEFAULT": "Protocol... Etc... Etc..."
+    "Default": "Protocol;Etc;Et;"
   }
 }

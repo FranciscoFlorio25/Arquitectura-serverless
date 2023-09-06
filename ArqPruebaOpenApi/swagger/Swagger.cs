@@ -17,8 +17,8 @@ namespace ArqPruebaOpenApi.swagger
         [SwaggerIgnore]
         [FunctionName("SwaggerUI")]
         public static Task<HttpResponseMessage> SwaggerUI(
-         [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "swagger/ui")] HttpRequestMessage req,
-         [SwashBuckleClient] ISwashBuckleClient swashBuckleClient)
+                [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "swagger/ui")] HttpRequestMessage req,
+                [SwashBuckleClient] ISwashBuckleClient swashBuckleClient)
         {
             return Task.FromResult(swashBuckleClient.CreateSwaggerUIResponse(req, "swagger/json"));
         }
