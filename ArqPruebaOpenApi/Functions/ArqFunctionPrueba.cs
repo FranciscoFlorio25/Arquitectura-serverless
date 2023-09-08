@@ -33,19 +33,19 @@ namespace ArqPruebaOpenApi.Functions
         {
             _log.LogInformation("Testing... Testing.");
 
-            var responseMessage = await _mediator.Send(new GetProductRequest()).ToHttpResult();
+            var responseMessage = "Testing"; // await _mediator.Send(new GetProductRequest()).ToHttpResult();
 
             return new OkObjectResult(responseMessage);
         }
 
         [FunctionName("ArqFunctionPruebaPost")]
         public async Task<IActionResult> PostProduct(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "product/post")] AddProductRequest req)
+        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "product/post")] HttpRequest request)//AddProductRequest req)
         {
             _log.LogInformation("Testing... Testing.");
 
 
-            var responseMessage = await _mediator.Send(req).ToHttpResult();
+            var responseMessage = await _mediator.Send(request).ToHttpResult();
 
             return new OkObjectResult(responseMessage);
         }

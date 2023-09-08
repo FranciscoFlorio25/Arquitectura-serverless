@@ -24,11 +24,7 @@ namespace ArqPruebaOpenApi
     {
         public override void Configure(IFunctionsHostBuilder builder)
         {
-
-            builder.Services.Configure<IConfiguration>((configuration) =>{
-                builder.Services.AddInfraestructure(configuration);
-                builder.Services.AddApplication();
-            });
+            var services = builder.Services;
 
             builder.AddSwashBuckle(Assembly.GetExecutingAssembly(), opts => {
                 opts.AddCodeParameter = true;
@@ -47,6 +43,8 @@ namespace ArqPruebaOpenApi
                 };
             });
 
+            services.AddInfraestructure(builder.GetContext().Configuration);
+            services.AddApplication();
 
         }
     }

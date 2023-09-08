@@ -13,6 +13,7 @@ namespace Infraestructure.Data
     {
         public ArqEjemploContext(DbContextOptions options) : base(options){}
 
-        public DbSet<Product> Products => Set<Product>();
+        public DbSet<Room> Rooms => Set<Room>();
+        public DbSet<RoomType> RoomsType => Set<RoomType>();
     }
 }

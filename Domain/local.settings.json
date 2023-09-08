@@ -1,0 +1,11 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet"
+  },
+  "ConnectionStrings": {
+    "Default": "Server=tcp:sqlserver-dataserver.database.windows.net,1433;Initial Catalog=hotel_demo_db;Persist Security Info=False;User ID=hotel_demo_user;Password=445G@nyuMp#b;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+
+  }
+}

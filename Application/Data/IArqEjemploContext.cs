@@ -10,8 +10,8 @@ namespace Application.Data
 {
     public interface IArqEjemploContext
     {
-        DbSet<Product> Products { get; }
-
+        DbSet<Room> Rooms { get; }
+        DbSet<RoomType> RoomsType { get; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }
